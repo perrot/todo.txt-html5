@@ -2,8 +2,75 @@
 <html>
 <head>
 	<title>ToDo.txt-HTML5</title>
+	<script type='text/javascript'>
+		function handleDnD(event) {
+			event.stopPropagation();
+			event.preventDefault();
+		}
+
+		window.onload = function() {
+			var dropbox;
+			dropbox = document.getElementById('dropbox');
+			dropbox.ondragover = function(event) {
+				handleDnD(event);
+				document.getElementById('dropbox').classList.add('over');
+			}
+			dropbox.ondragleave = function(event) {
+				handleDnD(event);
+				document.getElementById('dropbox').classList.remove('over');
+			}
+			dropbox.ondrop = function(event) {
+				handleDnD(event);
+				document.getElementById('status').innerHTML = 'ondrop';
+				var reader = new FileReader();
+				
+				reader.onload = function(e) {
+					document.getElementById('status').innerHTML = 'onload';
+					var contents = document.getElementById('contents')
+					contents.innerHTML = '';
+					var pre = document.createElement('pre');
+					pre.innerHTML = e.target.result;
+					contents.appendChild(pre);
+				}
+
+				reader.onerror = function(e) {
+					console.log('file read error', e);
+				}
+
+				var files = event.dataTransfer.files;
+				for (var i = 0; i < files.length; i++) {
+					document.getElementById('name').innerHTML = files[i].name;
+					reader.readAsText(files[i]);
+				}
+				document.getElementById('dropbox').classList.remove('over');
+			}
+		}
+	</script>
+	<style type='text/css'>
+
+		.over {
+			color: white;
+		}
+
+		#dropbox {
+			height: 250px;
+			width: 250px;
+			background-color: gray;
+			text-align: center;
+		}
+
+	</style>
 </head>
 <body>
-	<p>Some stuff</p>
+	<h3>File Contents</h3>
+	<p id='name'></p>
+	<div id='contents'>
+		
+	</div>
+	<div id='dropbox'>
+		<p>Drop todo.txt files here.</p>
+	</div>
+	<p id='status'></p>
 </body>
 </html>
+
