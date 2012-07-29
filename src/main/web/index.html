@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>ToDo.txt-HTML5</title>
+	<script type='text/javascript' src='todo-parser.js'></script>
 	<script type='text/javascript'>
 		function handleDnD(event) {
 			event.stopPropagation();
@@ -31,6 +33,7 @@
 					var pre = document.createElement('pre');
 					pre.innerHTML = e.target.result;
 					contents.appendChild(pre);
+					parseTodo(e.target.result);
 				}
 
 				reader.onerror = function(e) {
