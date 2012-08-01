@@ -21,7 +21,6 @@ function parseTodo(contents) {
 		task.contexts = parseContexts(matches[5]);
 		task.projects = parseProjects(matches[5]);
 		tasks[i] = task;
-		//alert(task);
 		console.debug("%o", task);
 	}
 	return tasks;
