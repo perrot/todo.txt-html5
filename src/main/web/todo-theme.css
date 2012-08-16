@@ -1,0 +1,32 @@
+body {
+	font-family: Verdana, sans-serif;
+	font-size: 75%;
+
+}
+
+.task-list {
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.task {
+	border: 1px dotted gray;
+}
+
+.task-priority {
+	color: red;
+	font-weight: bold;
+}
+
+.task-project {
+	color: blue;
+}
+
+.task-context {
+	color: green;
+}
+
+.task-age {
+	color: gray;
+	font-size: 0.75em;
+}

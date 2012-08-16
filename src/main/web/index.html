@@ -53,10 +53,24 @@
 			background-color: gray;
 			text-align: center;
 		}
-
 	</style>
+	<link rel='stylesheet' type='text/css' href='todo-layout.css'></link>
+	<link rel='stylesheet' type='text/css' href='todo-theme.css'></link>
 </head>
 <body>
+	<h3>Tasks</h3>
+
+	<div class='task-list'>
+		<div class='task'>
+			<div class='task-body'>
+				<input id='task-1-check' type='checkbox' name='check'>
+				<span class='task-priority'>A</span>
+				Redesign <span class='task-project'>+AndrewOberstar.com</span> <span class='task-context'>@home</span>
+			</div>
+			<div class='task-footer'><span class='task-age'>Created 3 days ago</span></div>
+		</div>
+	</div>
+
 	<h3>File Contents</h3>
 	<p id='name'></p>
 	<div id='contents'>
@@ -67,4 +81,3 @@
 	</div>
 </body>
 </html>
-

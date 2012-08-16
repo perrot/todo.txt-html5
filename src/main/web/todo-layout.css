@@ -1,0 +1,13 @@
+.task-prefix {
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.task-body {
+	float: left;
+}
+
+.task-footer {
+	text-align: right;
+}
