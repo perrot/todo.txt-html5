@@ -5,55 +5,7 @@
 	<title>ToDo.txt-HTML5</title>
 	<script type='text/javascript' src='jquery-1.7.2.min.js'></script>
 	<script type='text/javascript' src='todo-parser.js'></script>
-	<script type='text/javascript'>
-		function handleDnD(event) {
-			event.stopPropagation();
-			event.preventDefault();
-		}
-		
-		$(document).ready(function() {
-			var dropbox = $('#dropbox')
-			dropbox.bind('dragover', function(event) {
-				handleDnD(event);
-				$('#dropbox').addClass('over');
-			});
-			dropbox.bind('dragleave', function(event) {
-				handleDnD(event);
-				$('#dropbox').removeClass('over');
-			});
-			dropbox.bind('drop', function(event) {
-				handleDnD(event);
-				var reader = new FileReader();
-				reader.onload = function(event) {
-					var contents = $('#contents');
-					contents.text('');
-					contents.append('<pre>' + event.target.result + '</pre>');
-				}
-				reader.onerror = function(event) {
-					console.log('file read error', e);
-				}
-				
-				var files = event.originalEvent.dataTransfer.files;
-				for (var i = 0; i < files.length; i++) {
-					$('#name').text(files[i].name);
-					reader.readAsText(files[i]);
-				}
-				$('#dropbox').removeClass('over');
-			});
-		});
-	</script>
-	<style type='text/css'>
-		.over {
-			color: white;
-		}
-
-		#dropbox {
-			height: 250px;
-			width: 250px;
-			background-color: gray;
-			text-align: center;
-		}
-	</style>
+	<script type='text/javascript' src='drag-n-drop.js'></script>
 	<link rel='stylesheet' type='text/css' href='todo-layout.css'></link>
 	<link rel='stylesheet' type='text/css' href='todo-theme.css'></link>
 </head>

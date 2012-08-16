@@ -1,7 +1,14 @@
 body {
 	font-family: Verdana, sans-serif;
 	font-size: 75%;
+}
 
+.over {
+	color: white;
+}
+
+#dropbox {
+	background-color: gray;
 }
 
 .task-list {

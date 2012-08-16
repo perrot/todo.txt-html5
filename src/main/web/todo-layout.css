@@ -1,3 +1,9 @@
+#dropbox {
+	height: 250px;
+	width: 250px;
+	text-align: center;
+}
+
 .task-prefix {
 	float: left;
 	margin-left: 5px;
