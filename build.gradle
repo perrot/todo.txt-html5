@@ -1,6 +1,0 @@
-ext.sourceDir = file('src/main/web')
-
-task distZip(type: Zip) {
-	from sourceDir
-}
-
