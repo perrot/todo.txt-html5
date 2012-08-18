@@ -4,7 +4,7 @@ function renderTodos(todos) {
 	for (var i = 0; i < todos.length; i++) {
 		var num = list.children().size();
 		var todo = todos[i];
-		var task = $('<div class="task"></div>').appendTo(list);
+		var task = $('<div id="task-' + num + '" class="task"></div>').appendTo(list);
 		var body = $('<div class="task-body"></div>').appendTo(task);
 
 		//complete
@@ -14,7 +14,11 @@ function renderTodos(todos) {
 
 		$('<div class="task-status"><input id="task-' + num + '-complete" type="checkbox" name="check"></div>')
 			.appendTo(body)
-		$('#task-' + num + '-complete').prop('checked', todo.complete);
+		$('#task-' + num + '-complete')
+			.prop('checked', todo.complete)
+			.click(function(event) {
+				$(event.target).parent().parent().toggleClass('complete');
+			});
 
 		//priority
 		var priority = todo.priority;
