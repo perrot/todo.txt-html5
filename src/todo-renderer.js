@@ -28,7 +28,13 @@ function renderTodos(todos) {
 			.appendTo(body)
 
 		//footer
-		$('<div class="task-footer"><span class="task-age">Created x days ago.</span></div>')
+		var footer = '';
+		if (todo.created) {
+			var age = Math.round((new Date().getTime() - new Date(todo.created).getTime())/(1000 * 60 * 60 * 24));
+			footer = $('<span class="task-age">Created ' + age + ' days ago</span>');
+		}
+		$('<div class="task-footer"></div>')
+			.append(footer)
 			.appendTo(task);
 	}
 }
