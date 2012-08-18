@@ -8,6 +8,10 @@ function renderTodos(todos) {
 		var body = $('<div class="task-body"></div>').appendTo(task);
 
 		//complete
+		if (todo.complete) {
+			task.addClass('complete')
+		}
+
 		$('<div class="task-status"><input id="task-' + num + '-complete" type="checkbox" name="check"></div>')
 			.appendTo(body)
 		$('#task-' + num + '-complete').prop('checked', todo.complete);
