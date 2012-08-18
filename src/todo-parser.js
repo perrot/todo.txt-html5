@@ -2,6 +2,9 @@ function parseTodos(contents) {
 	var lines = contents.split('\n');
 	var tasks = Array();
 	for (i = 0; i < lines.length; i++) {
+		if (lines[i].trim() == '') {
+			break;
+		}
 		var pattern = /^\s*(?:(x)\s+)?(?:(\d{4}-\d{2}-\d{2})\s+)?(?:\(([A-Za-z])\)\s+)?(?:(\d{4}-\d{2}-\d{2})\s+)?(.*)/;
 		var matches = pattern.exec(lines[i]);
 		
