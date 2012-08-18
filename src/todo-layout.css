@@ -1,19 +1,26 @@
 #dropbox {
-	height: 250px;
-	width: 250px;
+	height: 50px;
+	width: 100px;
 	text-align: center;
+	vertical-align: center;
 }
 
-.task-prefix {
+.task-status {
 	float: left;
 	margin-left: 5px;
 	margin-right: 5px;
 }
 
-.task-body {
+.task-priority {
+	float: left;
+	margin-right: 5px;
+}
+
+.task-description {
 	float: left;
 }
 
 .task-footer {
+	clear: both;
 	text-align: right;
 }

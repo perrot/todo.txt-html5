@@ -1,4 +1,4 @@
-function parseTodo(contents) {
+function parseTodos(contents) {
 	var lines = contents.split('\n');
 	var tasks = Array();
 	for (i = 0; i < lines.length; i++) {
@@ -21,7 +21,6 @@ function parseTodo(contents) {
 		task.contexts = parseContexts(matches[5]);
 		task.projects = parseProjects(matches[5]);
 		tasks[i] = task;
-		console.debug("%o", task);
 	}
 	return tasks;
 }
@@ -35,4 +34,3 @@ function parseProjects(description) {
 	var pattern = /\+\w+/;
 	return pattern.exec(description);
 }
-
