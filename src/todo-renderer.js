@@ -15,25 +15,30 @@ function renderTodos(todos) {
 		$('<div class="task-status"><input id="task-' + num + '-complete" type="checkbox" name="check"></div>')
 			.appendTo(body)
 		$('#task-' + num + '-complete')
-			.prop('checked', todo.complete)
-			.click(function(event) {
-				$(event.target).parent().parent().toggleClass('complete');
-			});
+			.prop('checked', todo.complete);
 
 		//priority
 		var priority = todo.priority;
 		if (!priority) {
 			priority = '_';
 		}
-		$('<div class="task-priority">' + priority + '</div> ')
+
+		var priorityDiv = $('<div class="task-priority"></div>')
 			.appendTo(body)
+
+		$('<div class="value">' + priority + '</div>')
+			.appendTo(priorityDiv);
+
+		$('<div class="chooser"><ul><li>_</li><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li></ul></div>')
+			.appendTo(priorityDiv)
+			.hide();
 
 		//body
 		var description = todo.description
 			.replace(/(\+\w+)/g, "<span class='task-project'>$1</span>")
-			.replace(/(@\w+)/g, "<span class='task-context'>$1</span>")
+			.replace(/(@\w+)/g, "<span class='task-context'>$1</span>");
 		$('<div class="task-description">' + description + '</div>')
-			.appendTo(body)
+			.appendTo(body);
 
 		//footer
 		var footer = '';

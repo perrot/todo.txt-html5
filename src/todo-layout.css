@@ -24,3 +24,9 @@
 	clear: both;
 	text-align: right;
 }
+
+.chooser ul {
+	list-style-type: none;
+	margin-left: 0em;
+	padding-left: 0em;
+}
