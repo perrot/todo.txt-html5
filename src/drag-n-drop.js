@@ -20,7 +20,7 @@ $(document).ready(function() {
 			var contents = $('#contents');
 			contents.text('');
 			contents.append('<pre>' + event.target.result + '</pre>');
-			renderTodos(parseTodos(event.target.result));
+			parseTodos(event.target.result);
 		}
 		reader.onerror = function(event) {
 			console.log('file read error', e);

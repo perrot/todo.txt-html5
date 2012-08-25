@@ -4,22 +4,45 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>ToDo.txt-HTML5</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300' rel='stylesheet' type='text/css'></link>
-	<script type='text/javascript' src='jquery-1.8.0.js'></script>
+	<script type='text/javascript' src='jquery-1.7.2.js'></script>
+	<script type='text/javascript' src='ember-0.9.8.1.js'></script>
+	<script type='text/javascript' src='todo-model.js'></script>
+	
 	<script type='text/javascript' src='todo-parser.js'></script>
+
 	<script type='text/javascript' src='todo-renderer.js'></script>
 	<script type='text/javascript' src='todo-behavior.js'></script>
 	<script type='text/javascript' src='drag-n-drop.js'></script>
 	<link rel='stylesheet' type='text/css' href='todo-layout.css'></link>
 	<link rel='stylesheet' type='text/css' href='todo-theme.css'></link>
+
+	<script type='text/x-handlebars' data-template-name='todo'>
+		<div {{bindAttr class=":task-body content.complete"}}>
+			<div class='task-status'>
+				{{view Ember.Checkbox checkedBinding="content.complete"}}
+			</div>
+			<div class='task-priority'>
+				{{view Ember.Select contentBinding="TodoApp.todosController.priorities" selectionBinding="content.priority"}}
+			</div>
+			<div class='task-description' contenteditable='true'>
+				{{content.description}}
+			</div>
+		</div>
+		<div class='task-footer'>
+			{{#if content.age}}
+			<span clas='task-age'>{{content.age}} days ago</span>
+			{{/if}}
+		</div>
+	</script>
 </head>
 <body>
-	<div id='dropbox'>
-		<p>Drop todo.txt files here.</p>
+	<div id='container'>
+		<div id='dropbox'>
+			<p>Drop todo.txt files here.</p>
+		</div>
+
+		<h3>Tasks</h3>
 	</div>
-	
-	<h3>Tasks</h3>
-	<div id='task-list'></div>
-	
 	<h3>File Contents</h3>
 	<p id='name'></p>
 	<div id='contents'>
