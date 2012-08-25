@@ -19,6 +19,9 @@ TodoApp.Todo = Ember.Object.extend({
 	}.property('description'),
 	age: function() {
 		return Math.round((new Date().getTime() - new Date(this.created).getTime())/(1000 * 60 * 60 * 24))
+	}.property('created'),
+	createdToday: function() {
+		return this.get('age') == 0
 	}.property('created')
 })
 
@@ -36,6 +39,17 @@ TodoApp.todosView = Ember.CollectionView.create({
 	})
 })
 
+TodoApp.todoCreateView = Ember.View.create({
+	content: TodoApp.Todo.create(),
+	classNames: ['new-task'],
+	templateName:'new-todo',
+	add: function() {
+		TodoApp.todosController.pushObject(this.get('content'))
+		this.set('content', TodoApp.Todo.create())
+	}
+})
+
 $(document).ready(function() {
 	TodoApp.todosView.appendTo('#container')
+	TodoApp.todoCreateView.appendTo('#container')
 })
