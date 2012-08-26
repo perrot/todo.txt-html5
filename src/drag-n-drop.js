@@ -17,9 +17,6 @@ $(document).ready(function() {
 		handleDnD(event);
 		var reader = new FileReader();
 		reader.onload = function(event) {
-			var contents = $('#contents');
-			contents.text('');
-			contents.append('<pre>' + event.target.result + '</pre>');
 			parseTodos(event.target.result);
 		}
 		reader.onerror = function(event) {
@@ -28,7 +25,6 @@ $(document).ready(function() {
 		
 		var files = event.originalEvent.dataTransfer.files;
 		for (var i = 0; i < files.length; i++) {
-			$('#name').text(files[i].name);
 			reader.readAsText(files[i]);
 		}
 		$('#dropbox').removeClass('over');

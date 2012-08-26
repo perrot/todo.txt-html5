@@ -2,7 +2,15 @@ TodoApp = Ember.Application.create()
 
 TodoApp.todosController = Ember.ArrayController.create({
 	content: [],
-	priorities: ['_', 'A', 'B', 'C', 'D', 'E']
+	priorities: ['_', 'A', 'B', 'C', 'D', 'E'],
+	asFile: function() {
+		return renderTodos(this.get('content'))
+	}.property('content.@each',
+		'content.@each.complete',
+		'content.@each.priority',
+		'content.@each.description',
+		'content.@each.created',
+		'content.@each.completed')
 })
 
 TodoApp.Todo = Ember.Object.extend({
@@ -40,16 +48,24 @@ TodoApp.todosView = Ember.CollectionView.create({
 })
 
 TodoApp.todoCreateView = Ember.View.create({
-	content: TodoApp.Todo.create(),
 	classNames: ['new-task'],
-	templateName:'new-todo',
+	content: TodoApp.Todo.create(),
+	templateName: 'new-todo',
 	add: function() {
 		TodoApp.todosController.pushObject(this.get('content'))
 		this.set('content', TodoApp.Todo.create())
 	}
 })
 
+TodoApp.todoFileView = Ember.View.create({
+	classNames: ['todo-file'],
+	content: TodoApp.todosController,
+	tagName: 'pre',
+	template: Ember.Handlebars.compile('{{content.asFile}}')
+})
+
 $(document).ready(function() {
 	TodoApp.todosView.appendTo('#container')
 	TodoApp.todoCreateView.appendTo('#container')
+	TodoApp.todoFileView.appendTo('body')
 })
