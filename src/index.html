@@ -16,16 +16,21 @@
 	<link rel='stylesheet' type='text/css' href='todo-theme.css'></link>
 
 	<script type='text/x-handlebars' data-template-name='todo'>
+		{{view TodoApp.TodoDisplayView  contentBinding="content"}}
+		{{#if isEditing}}
+			{{view TodoApp.TodoEditView contentBinding="content"}}
+		{{/if}}
+	</script>
+
+	<script type='text/x-handlebars' data-template-name='todo-display'>
 		<div {{bindAttr class=":task-body content.complete"}}>
 			<div class='task-status'>
 				{{view Ember.Checkbox checkedBinding="content.complete"}}
 			</div>
 			<div class='task-priority'>
-				{{view Ember.Select contentBinding="TodoApp.todosController.priorities" selectionBinding="content.priority"}}
+				{{content.priority}}
 			</div>
-			<div class='task-description' contenteditable='true'>
-				{{content.description}}
-			</div>
+			{{view TodoApp.TodoDescriptionView contentBinding="content.description"}}
 		</div>
 		<div class='task-footer'>
 			{{#if content.age}}
@@ -37,7 +42,19 @@
 		</div>
 	</script>
 
-	<script type='text/x-handlebars' data-template-name='new-todo'>
+	<script type="text/x-handlebars" data-template-name="todo-edit">
+		<div class="task-body">
+			<div class='task-priority'>
+				{{view Ember.Select contentBinding="TodoApp.todosController.priorities" selectionBinding="content.priority"}}
+			</div>
+			<div class='task-description'>
+				{{view Ember.TextField valueBinding="content.description"}}
+			</div>
+		</div>
+		<button {{action "close"}}>Close</button>
+	</script>
+
+	<script type='text/x-handlebars' data-template-name='todo-create'>
 		<div class='task-body'>
 			<div class='task-priority'>
 				{{view Ember.Select contentBinding="TodoApp.todosController.priorities" selectionBinding="content.priority"}}
@@ -45,7 +62,7 @@
 			<div class='task-description'>
 				{{view Ember.TextField valueBinding="content.description"}}
 			</div>
-			<a href='#' {{action "add"}}>Add</a>
+			<button {{action  "add"}}>Add</a>
 		</div>
 	</script>
 </head>

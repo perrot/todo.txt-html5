@@ -33,9 +33,31 @@ TodoApp.Todo = Ember.Object.extend({
 	}.property('created')
 })
 
+TodoApp.TodoDescriptionView = Ember.View.extend({
+	classNames: ['task-description'],
+	template: Ember.Handlebars.compile('{{content}}'),
+	click: function() {
+		this.get('parentView').get('parentView').set('isEditing', true)
+	}
+})
+
 TodoApp.TodoView = Ember.View.extend({
+	classNames: ['todo'],
+	templateName: 'todo',
+	isEditing: false
+})
+
+TodoApp.TodoDisplayView = Ember.View.extend({
 	classNames: ['task'],
-	templateName: 'todo'
+	templateName: 'todo-display'
+})
+
+TodoApp.TodoEditView = Ember.View.extend({
+	classNames: ['task-edit'],
+	templateName: 'todo-edit',
+	close: function() {
+		this.get('parentView').set('isEditing', false)
+	}
 })
 
 TodoApp.todosView = Ember.CollectionView.create({
@@ -50,7 +72,7 @@ TodoApp.todosView = Ember.CollectionView.create({
 TodoApp.todoCreateView = Ember.View.create({
 	classNames: ['new-task'],
 	content: TodoApp.Todo.create(),
-	templateName: 'new-todo',
+	templateName: 'todo-create',
 	add: function() {
 		TodoApp.todosController.pushObject(this.get('content'))
 		this.set('content', TodoApp.Todo.create())
