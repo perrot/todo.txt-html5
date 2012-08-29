@@ -1,9 +1,11 @@
-TodoApp = Ember.Application.create()
+TodoApp = Ember.Application.create({
+	Files: {}
+})
 
 TodoApp.todosController = Ember.ArrayController.create({
 	content: [],
 	priorities: ['_', 'A', 'B', 'C', 'D', 'E'],
-	asFile: function() {
+	asString: function() {
 		return renderTodos(this.get('content'))
 	}.property('content.@each',
 		'content.@each.complete',
@@ -83,7 +85,7 @@ TodoApp.todoFileView = Ember.View.create({
 	classNames: ['todo-file'],
 	content: TodoApp.todosController,
 	tagName: 'pre',
-	template: Ember.Handlebars.compile('{{content.asFile}}')
+	template: Ember.Handlebars.compile('{{content.asString}}')
 })
 
 $(document).ready(function() {
