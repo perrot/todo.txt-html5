@@ -1,0 +1,32 @@
+#dropbox {
+	height: 50px;
+	width: 100px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.task-status {
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.task-priority {
+	float: left;
+	margin-right: 5px;
+}
+
+.task-description {
+	float: left;
+}
+
+.task-footer {
+	clear: both;
+	text-align: right;
+}
+
+.chooser ul {
+	list-style-type: none;
+	margin-left: 0em;
+	padding-left: 0em;
+}
