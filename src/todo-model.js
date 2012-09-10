@@ -32,7 +32,10 @@ TodoApp.Todo = Ember.Object.extend({
 	}.property('created'),
 	createdToday: function() {
 		return this.get('age') == 0
-	}.property('created')
+	}.property('created'),
+	_completeChanged: function() {
+		this.set('completed', this.get('complete') ? new Date() : null)
+	}.observes('complete')
 })
 
 TodoApp.TodoDescriptionView = Ember.View.extend({
