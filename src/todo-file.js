@@ -27,7 +27,22 @@ function handleFsError(error) {
 function initFs(fs) {
 	fs.root.getFile('todo.txt', {create: true}, function(fileEntry) {
 		TodoApp.Files.Todo = fileEntry
+		fileEntry.file(function(file) {
+			readTodos(file)
+		}, handleFsError)
 	}, handleFsError)
+}
+	
+function readTodos(file) {
+	var reader = new FileReader()
+	reader.onload = function(event) {
+		parseTodos(event.target.result)
+	}
+	reader.onerror = function(event) {
+		console.log('Could not read todo.txt', event)
+	}
+	reader.readAsText(file)
+	console.log(reader.readyState)
 }
 
 function writeTodos() {
