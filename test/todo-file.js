@@ -42,7 +42,6 @@ function readTodos(file) {
 		console.log('Could not read todo.txt', event)
 	}
 	reader.readAsText(file)
-	console.log(reader.readyState)
 }
 
 function writeTodos() {
