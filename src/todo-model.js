@@ -5,6 +5,26 @@ TodoApp = Ember.Application.create({
 TodoApp.todosController = Ember.ArrayController.create({
 	content: [],
 	priorities: ['_', 'A', 'B', 'C', 'D', 'E'],
+	doneAsString: function() {
+		return renderTodos(this.get('content').filter(function(todo) {
+			return todo.get('complete')
+		}))
+	}.property('content.@each',
+		'content.@each.complete',
+		'content.@each.priority',
+		'content.@each.description',
+		'content.@each.created',
+		'content.@each.completed'),
+	incompleteAsString: function() {
+		return renderTodos(this.get('content').filter(function(todo) {
+			return !todo.get('complete')
+		}))
+	}.property('content.@each',
+		'content.@each.complete',
+		'content.@each.priority',
+		'content.@each.description',
+		'content.@each.created',
+		'content.@each.completed'),
 	asString: function() {
 		return renderTodos(this.get('content'))
 	}.property('content.@each',
