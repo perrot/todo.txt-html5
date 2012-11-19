@@ -27,9 +27,11 @@ function handleFsError(error) {
 function initFs(fs) {
 	fs.root.getFile('todo.txt', {create: true}, function(fileEntry) {
 		TodoApp.Files.Todo = fileEntry
-		fileEntry.file(function(file) {
-			readTodos(file)
-		}, handleFsError)
+		fileEntry.file(readTodos, handleFsError)
+	}, handleFsError)
+	fs.root.getFile('done.txt', {create: true}, function(fileEntry) {
+		TodoApp.Files.Done = fileEntry
+		fileEntry.file(readTodos, handleFsError)
 	}, handleFsError)
 }
 	
@@ -45,15 +47,20 @@ function readTodos(file) {
 }
 
 function writeTodos() {
+	writeTodoFile(TodoApp.Files.Todo, TodoApp.todosController.get('incompleteAsString'))
+	writeTodoFile(TodoApp.Files.Done, TodoApp.todosController.get('doneAsString'))
+}
+
+function writeTodoFile(file, contents) {
 	var writeFile = function() {
-		TodoApp.Files.Todo.createWriter(function(writer) {
+		file.createWriter(function(writer) {
 			writer.onwriteerror = handleFsError
-			var blob = new Blob([TodoApp.todosController.get('asString')], {type:'text/plain'})
+			var blob = new Blob([contents], {type:'text/plain'})
 			writer.write(blob)
 		}, handleFsError)
 	}
 
-	TodoApp.Files.Todo.createWriter(function(writer) {
+	file.createWriter(function(writer) {
 		writer.onwriteend = writeFile
 		writer.onwriteerror = handleFsError
 		writer.truncate(0)

@@ -1,7 +1,8 @@
 body {
-	font-family: 'Open Sans', sans-serif;
+	color: #d7d7d7;
+	background-color: #1a1a1a;
+	font-family: Arial, sans-serif;
 	font-size: 100%;
-	font-weight: 300;
 }
 
 .over {
@@ -9,7 +10,8 @@ body {
 }
 
 #dropbox {
-	background-color: gray;
+	background-color: #333333;
+	color: #5f5f57;
 }
 
 #task-list {
@@ -18,28 +20,53 @@ body {
 }
 
 .task {
-	border: 1px dotted gray;
+	background-color: #272727;
+	border: 1px solid #1a1a1a;
 }
 
 .task-priority {
-	color: red;
+	color: #997ee9;
 	font-weight: bold;
 }
 
 .task-project {
-	color: blue;
+	color: #74d4e0;
 }
 
 .task-context {
-	color: green;
+	color: #f42a73;
 }
 
 .task-age {
-	color: gray;
-	font-size: 0.75em;
+	color: #b2d930;
+	font-style: italic;
 }
 
 .complete .task-description {
 	text-decoration: line-through;
 }
 
+.task-date {
+	color: #f6aa52;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #f6aa52;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input[type=text] {
+	background-color: #333333;
+	border: none;
+	color: #d7d7d7;
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+}
+
+.task button {
+	float: right;
+}

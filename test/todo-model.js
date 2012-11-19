@@ -5,6 +5,26 @@ TodoApp = Ember.Application.create({
 TodoApp.todosController = Ember.ArrayController.create({
 	content: [],
 	priorities: ['_', 'A', 'B', 'C', 'D', 'E'],
+	doneAsString: function() {
+		return renderTodos(this.get('content').filter(function(todo) {
+			return todo.get('complete')
+		}))
+	}.property('content.@each',
+		'content.@each.complete',
+		'content.@each.priority',
+		'content.@each.description',
+		'content.@each.created',
+		'content.@each.completed'),
+	incompleteAsString: function() {
+		return renderTodos(this.get('content').filter(function(todo) {
+			return !todo.get('complete')
+		}))
+	}.property('content.@each',
+		'content.@each.complete',
+		'content.@each.priority',
+		'content.@each.description',
+		'content.@each.created',
+		'content.@each.completed'),
 	asString: function() {
 		return renderTodos(this.get('content'))
 	}.property('content.@each',
@@ -17,8 +37,14 @@ TodoApp.todosController = Ember.ArrayController.create({
 
 TodoApp.Todo = Ember.Object.extend({
 	complete: false,
-	priority: '_',
+	priority: '',
 	description: '',
+	descriptionRender: function() {
+		return this.description.replace(/(\(?(?:http|https|ftp):\/\/[-A-Za-z0-9+&@#\/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|])/, '<a href="$1">$1</a>')
+			.replace(/(@\w+)/, '<span class="task-context">$1</span>')
+			.replace(/(\+\w+)/, '<span class="task-project">$1</span>')
+			.htmlSafe()
+	}.property('description'),
 	created: new Date(),
 	completed: null,
 	contexts: function() {
@@ -32,15 +58,16 @@ TodoApp.Todo = Ember.Object.extend({
 	}.property('created'),
 	createdToday: function() {
 		return this.get('age') == 0
-	}.property('created')
+	}.property('created'),
+	_completeChanged: function() {
+		this.set('completed', this.get('complete') ? new Date() : null)
+	}.observes('complete')
 })
 
 TodoApp.TodoDescriptionView = Ember.View.extend({
 	classNames: ['task-description'],
+	tagName: 'span',
 	template: Ember.Handlebars.compile('{{content}}'),
-	click: function() {
-		this.get('parentView').get('parentView').set('isEditing', true)
-	}
 })
 
 TodoApp.TodoView = Ember.View.extend({
@@ -51,11 +78,16 @@ TodoApp.TodoView = Ember.View.extend({
 
 TodoApp.TodoDisplayView = Ember.View.extend({
 	classNames: ['task'],
-	templateName: 'todo-display'
+	classNameBindings: ['complete'],
+	templateName: 'todo-display',
+	click: function() {
+		this.get('parentView').set('isEditing', true)
+	}
 })
 
 TodoApp.TodoEditView = Ember.View.extend({
-	classNames: ['task-edit'],
+	classNames: ['task'],
+	classNameBindings: ['complete'],
 	templateName: 'todo-edit',
 	close: function() {
 		this.get('parentView').set('isEditing', false)
@@ -72,7 +104,7 @@ TodoApp.todosView = Ember.CollectionView.create({
 })
 
 TodoApp.todoCreateView = Ember.View.create({
-	classNames: ['new-task'],
+	classNames: ['task'],
 	content: TodoApp.Todo.create(),
 	templateName: 'todo-create',
 	add: function() {
