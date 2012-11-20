@@ -3,11 +3,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>ToDo.txt-HTML5</title>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300' rel='stylesheet' type='text/css'></link>
-	<script type='text/javascript' src='jquery-1.7.2.js'></script>
-	<script type='text/javascript' src='ember-0.9.8.1.js'></script>
+	<script type='text/javascript' src='jquery-1.8.3.js'></script>
+	<script type='text/javascript' src='handlebars-1.0.rc.1.js'></script>
+
+	<script id='todo-display-template' type='text/x-handlebars'>
+		<span class='task-status {{status}}'></span>
+		<span class='task-priority'>{{priority}}</span>
+		<span class='task-description'>{{description}}</span>
+		<span class='task-age'>{{age}} days ago</span>
+	</script>
+
+	<script id='todo-edit-template' type='text/x-handlebars'>
+		<span class='task-status {{status}}'></span>
+		<input class='task-priority' type='text' value='{{priority}}'></input>
+		<input class='task-description' type='text' value='{{description}}'></input>
+		<a class='task-save' href='#'>Save</a>
+	</script>
 
 	<script type='text/javascript' src='todo-model.js'></script>
+	<script type='text/javascript' src='todo-view.js'></script>
 	<script type='text/javascript' src='todo-file.js'></script>
 	<script type='text/javascript' src='todo-behavior.js'></script>
 	<script type='text/javascript' src='todo-renderer.js'></script>
@@ -16,54 +30,6 @@
 	
 	<link rel='stylesheet' type='text/css' href='todo-layout.css'></link>
 	<link rel='stylesheet' type='text/css' href='todo-theme.css'></link>
-
-	<script type='text/x-handlebars' data-template-name='todo'>
-		{{#unless isEditing}}
-			{{view TodoApp.TodoDisplayView  contentBinding="content"}}
-		{{/unless}}
-		{{#if isEditing}}
-			{{view TodoApp.TodoEditView contentBinding="content"}}
-		{{/if}}
-	</script>
-
-	<script type='text/x-handlebars' data-template-name='todo-display'>
-		<span class='task-status'>
-			{{view Ember.Checkbox checkedBinding="content.complete"}}
-		</span>
-		<span class='task-priority'>
-			{{content.priority}}
-		</span>
-		{{view TodoApp.TodoDescriptionView contentBinding="content.descriptionRender"}}
-		{{#if content.age}}
-		<span class='task-age'>{{content.age}} days ago</span>
-		{{/if}}
-		{{#if content.createdToday}}
-		<span class='task-age'>Today</span>
-		{{/if}}
-	</script>
-
-	<script type="text/x-handlebars" data-template-name="todo-edit">
-		<span class='task-status'>
-			{{view Ember.Checkbox checkedBinding="content.complete"}}
-		</span>
-		<span class='task-priority'>
-			{{view Ember.TextField valueBinding="content.priority" size="1"}}
-		</span>
-		<span class='task-description'>
-			{{view Ember.TextField valueBinding="content.description"}}
-		</span>
-		<button {{action "close"}}>Close</button>
-	</script>
-
-	<script type='text/x-handlebars' data-template-name='todo-create'>
-		<span class='task-priority'>
-			{{view Ember.TextField valueBinding="content.priority" size="1"}}
-		</span>
-		<span class='task-description'>
-			{{view Ember.TextField valueBinding="content.description"}}
-		</span>
-		<button {{action  "add"}}>Add</a>
-	</script>
 </head>
 <body>
 	<div id='container'>
@@ -72,7 +38,9 @@
 		<div id='dropbox'>
 			<p>Drop todo.txt files here.</p>
 		</div>
-		<!-- task list will be appended here -->
+		<div id='task-list'>
+			<!-- task list will be appended here -->
+		</div>
 	</div>
 </body>
 </html>

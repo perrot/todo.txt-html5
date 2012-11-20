@@ -26,11 +26,11 @@ function handleFsError(error) {
 
 function initFs(fs) {
 	fs.root.getFile('todo.txt', {create: true}, function(fileEntry) {
-		TodoApp.Files.Todo = fileEntry
+		files.todo = fileEntry
 		fileEntry.file(readTodos, handleFsError)
 	}, handleFsError)
 	fs.root.getFile('done.txt', {create: true}, function(fileEntry) {
-		TodoApp.Files.Done = fileEntry
+		files.done = fileEntry
 		fileEntry.file(readTodos, handleFsError)
 	}, handleFsError)
 }
@@ -39,6 +39,9 @@ function readTodos(file) {
 	var reader = new FileReader()
 	reader.onload = function(event) {
 		parseTodos(event.target.result)
+		for (var i = 0; i < todos.length; i++) {
+			renderDisplay(todos[i])
+		}
 	}
 	reader.onerror = function(event) {
 		console.log('Could not read todo.txt', event)
@@ -47,8 +50,8 @@ function readTodos(file) {
 }
 
 function writeTodos() {
-	writeTodoFile(TodoApp.Files.Todo, TodoApp.todosController.get('incompleteAsString'))
-	writeTodoFile(TodoApp.Files.Done, TodoApp.todosController.get('doneAsString'))
+	writeTodoFile(files.todo, TodoApp.todosController.get('incompleteAsString'))
+	writeTodoFile(files.done, TodoApp.todosController.get('doneAsString'))
 }
 
 function writeTodoFile(file, contents) {
