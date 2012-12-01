@@ -1,5 +1,5 @@
 $('#save').live('click', function(event) {
-	writeTodos()
+	controller.saveTodosToLocal()
 })
 
 $('.todo:not(:has(input))').live('click', function(event) {

@@ -1,6 +1,10 @@
 var controller = {
 	_lastId: 1,
 	_todos: [],
+	_files: {
+		todo: null,
+		done: null
+	},
 
 	getTodo: function(id) {
 		return this._todos[id]
@@ -12,6 +16,31 @@ var controller = {
 
 	getAllTodos: function() {
 		return this._todos
+	},
+
+	getFilteredTodos: function(criteria) {
+		var filtered = []
+		var todos = this.getAllTodos()
+		for (var i = 1; i < todos.length; i++) {
+			var match = true
+			for (key in criteria) {
+				if (criteria[key] instanceof Array) {
+					for (criterion in criteria[key]) {
+						if (criterion != todos[i][criterion]) {
+							match = false
+							break
+						}
+					}
+				} else if (criteria[key] != todos[i][key]) {
+					match = false
+					break
+				}
+			}
+			if (match) {
+				filtered.push(todos[i])
+			}
+		}
+		return filtered
 	},
 
 	getAllTodosAsText: function() {
@@ -44,7 +73,7 @@ var controller = {
 		this._todos[id] = null
 		return todo
 	},
-	
+
 	switchToEditMode: function(id) {
 		html.renderEdit(this.getTodo(id))
 	},
@@ -83,6 +112,7 @@ var controller = {
 	},
 
 	saveTodosToLocal: function() {
-
+		writeTodoFile(this._files.todo, renderTodos(this.getFilteredTodos({complete:false})))
+		writeTodoFile(this._files.done, renderTodos(this.getFilteredTodos({complete:true})))
 	}
 }

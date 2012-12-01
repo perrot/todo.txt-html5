@@ -1,8 +1,3 @@
-var files = {
-	todo: null,
-	done: null
-}
-
 var Todo = function() {
 	this._complete = false
 	this.priority = ''	

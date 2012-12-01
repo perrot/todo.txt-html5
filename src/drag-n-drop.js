@@ -17,7 +17,7 @@ $(document).ready(function() {
 		handleDnD(event);
 		var reader = new FileReader();
 		reader.onload = function(event) {
-			parseTodos(event.target.result);
+			controller.createTodos(event.target.result);
 		}
 		reader.onerror = function(event) {
 			console.log('file read error', e);
