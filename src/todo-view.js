@@ -10,10 +10,10 @@ function renderEdit(todo) {
 }
 
 function renderTodo(templateFun, todo) {
-	var elem = $('#task-' + todo.id)
+	var elem = $('#todo-' + todo.id)
 	if (elem === 0) {
 		elem.html(displayTemplate(todo))
 	} else {
-		$('#task-list').append('<div id="task-' + todo.id + '" class="task">' + displayTemplate(todo) + '</div>')
+		$('#todo-list').append('<div id="todo-' + todo.id + '" class="todo">' + displayTemplate(todo) + '</div>')
 	}
 }

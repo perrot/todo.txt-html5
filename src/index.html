@@ -7,17 +7,17 @@
 	<script type='text/javascript' src='handlebars-1.0.rc.1.js'></script>
 
 	<script id='todo-display-template' type='text/x-handlebars'>
-		<span class='task-status {{status}}'></span>
-		<span class='task-priority'>{{priority}}</span>
-		<span class='task-description'>{{description}}</span>
-		<span class='task-age'>{{age}} days ago</span>
+		<span class='todo-status {{status}}'></span>
+		<span class='todo-priority'>{{priority}}</span>
+		<span class='todo-description'>{{description}}</span>
+		<span class='todo-age'>{{age}} days ago</span>
 	</script>
 
 	<script id='todo-edit-template' type='text/x-handlebars'>
-		<span class='task-status {{status}}'></span>
-		<input class='task-priority' type='text' value='{{priority}}'></input>
-		<input class='task-description' type='text' value='{{description}}'></input>
-		<a class='task-save' href='#'>Save</a>
+		<span class='todo-status {{status}}'></span>
+		<input class='todo-priority' type='text' value='{{priority}}'></input>
+		<input class='todo-description' type='text' value='{{description}}'></input>
+		<a class='todo-save' href='#'>Save</a>
 	</script>
 
 	<script type='text/javascript' src='todo-model.js'></script>
@@ -38,8 +38,8 @@
 		<div id='dropbox'>
 			<p>Drop todo.txt files here.</p>
 		</div>
-		<div id='task-list'>
-			<!-- task list will be appended here -->
+		<div id='todo-list'>
+			<!-- todo list will be appended here -->
 		</div>
 	</div>
 </body>
