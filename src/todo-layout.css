@@ -22,7 +22,11 @@
 	text-align: right;
 }
 
-.todo-description input[type=text] {
+input.todo-description[type=text] {
 	box-sizing: border-box;
 	width: 90%;
+}
+
+.todo-save {
+	float: right;
 }

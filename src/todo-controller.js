@@ -3,11 +3,11 @@ var controller = {
 	_todos: [],
 
 	getTodo: function(id) {
-		return this._todos[i]
+		return this._todos[id]
 	},
 
 	getTodoAsText: function(id) {
-		return text.renderTodo(getTodo(id))
+		return text.renderTodo(this.getTodo(id))
 	},
 
 	getAllTodos: function() {
@@ -15,7 +15,7 @@ var controller = {
 	},
 
 	getAllTodosAsText: function() {
-		return text.renderTodos(getAllTodos())
+		return text.renderTodos(this.getAllTodos())
 	},
 
 	createTodo: function(contents) {
@@ -51,12 +51,17 @@ var controller = {
 		//find checkbox and switch state?
 	},
 
-	toggleEditMode: function(id) {
-		
+	switchToEditMode: function(id) {
+		html.renderEdit(this.getTodo(id))
 	},
 
-	editTodo: function(id, changes) {
-	
+	updateTodo: function(id, changes) {
+		var todo = this.getTodo(id)
+		for (key in changes) {
+			todo[key] = changes[key]
+		}
+		html.renderDisplay(todo)
+		return todo
 	},
 
 	filterByContext: function(contexts) {
