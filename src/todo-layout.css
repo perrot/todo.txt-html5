@@ -30,6 +30,6 @@ input.todo-description[type=text] {
 	width: 90%;
 }
 
-.todo-save {
+.todo-save, .todo-add {
 	float: right;
 }

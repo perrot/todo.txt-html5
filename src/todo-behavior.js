@@ -10,7 +10,7 @@ $('.todo:not(:has(input))').live('click', function(event) {
 	elem.children('.todo-priority').focus()
 })
 
-$('.todo input').live('keyup', function(event) {
+$('#todo-list .todo input').live('keyup', function(event) {
 	//on ENTER
 	if (event.keyCode == 13) {
 		$(event.target).siblings('.todo-save').click()
@@ -26,4 +26,24 @@ $('.todo-save').live('click', function(event) {
 		priority: priority,
 		description: description
 	})
+	event.preventDefault()
+})
+
+$('.todo-add').live('click', function(event) {
+	var todoElem = $(event.target).parent()
+	var priority = $(todoElem).children('.todo-priority').attr('value')[0]
+	var description = $(todoElem).children('.todo-description').attr('value')
+	var text = priority ? '(' + priority + ') ' : ''
+	text += description
+	controller.createTodo(text)
+	todoElem.children('input').attr('value', '')
+	todoElem.children('.todo-priority').focus()
+	event.preventDefault()
+})
+
+$('#todo-add .todo input').live('keyup', function(event) {
+	//on ENTER
+	if (event.keyCode == 13) {
+		$(event.target).siblings('.todo-add').click()
+	}
 })

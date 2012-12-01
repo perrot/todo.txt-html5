@@ -14,13 +14,22 @@ body {
 	color: #5f5f57;
 }
 
-#todo-list {
+#todo-list, #dropbox {
 	border: 1px solid black;
+}
+
+#todo-add {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 }
 
 .todo {
 	background-color: #272727;
-	border: 1px solid #1a1a1a;
+	border-top: 1px solid #1a1a1a;
+}
+
+#todo-1 {
+	border: none;
 }
 
 .todo-priority {
