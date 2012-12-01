@@ -44,13 +44,7 @@ var controller = {
 		this._todos[id] = null
 		return todo
 	},
-
-	toggleTodoStatus: function(id) {
-		var todo = getTodo(id)
-		todo.complete = todo.complete ? false : true
-		//find checkbox and switch state?
-	},
-
+	
 	switchToEditMode: function(id) {
 		html.renderEdit(this.getTodo(id))
 	},

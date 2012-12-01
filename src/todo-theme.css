@@ -16,7 +16,6 @@ body {
 
 #todo-list {
 	border: 1px solid black;
-	padding: 5px;
 }
 
 .todo {
@@ -42,8 +41,9 @@ body {
 	font-style: italic;
 }
 
-.complete .todo-description {
+.complete ~ .todo-description {
 	text-decoration: line-through;
+	color: #5f5f57;
 }
 
 .todo-date {

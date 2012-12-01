@@ -10,14 +10,14 @@
 	<script type='text/javascript' src='handlebars-1.0.rc.1.js'></script>
 
 	<script id='todo-display-template' type='text/x-handlebars'>
-		<span class='todo-status {{status}}'></span>
+		<canvas class='todo-status checkbox {{status}}' width='25' height='25'></canvas>
 		<span class='todo-priority'>{{priority}}</span>
 		<span class='todo-description'>{{{rDescription}}}</span>
 		<span class='todo-age'>{{rAge}}</span>
 	</script>
 
 	<script id='todo-edit-template' type='text/x-handlebars'>
-		<span class='todo-status {{status}}'></span>
+		<canvas class='todo-status checkbox {{status}}' width='25' height='25'></canvas>
 		<input class='todo-priority' type='text' size='1' value='{{priority}}'></input>
 		<input class='todo-description' type='text' value='{{description}}'></input>
 		<a class='todo-save' href='#'>Save</a>
