@@ -14,39 +14,48 @@ body {
 	color: #5f5f57;
 }
 
-#task-list {
+#todo-list, #dropbox {
 	border: 1px solid black;
-	padding: 5px;
 }
 
-.task {
+#todo-add {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+.todo {
 	background-color: #272727;
-	border: 1px solid #1a1a1a;
+	border-top: 1px solid #1a1a1a;
 }
 
-.task-priority {
+#todo-1 {
+	border: none;
+}
+
+.todo-priority {
 	color: #997ee9;
 	font-weight: bold;
 }
 
-.task-project {
+.todo-project {
 	color: #74d4e0;
 }
 
-.task-context {
+.todo-context {
 	color: #f42a73;
 }
 
-.task-age {
+.todo-age {
 	color: #b2d930;
 	font-style: italic;
 }
 
-.complete .task-description {
+.complete ~ .todo-description {
 	text-decoration: line-through;
+	color: #5f5f57;
 }
 
-.task-date {
+.todo-date {
 	color: #f6aa52;
 }
 
@@ -65,8 +74,4 @@ input[type=text] {
 	color: #d7d7d7;
 	font-family: Arial, sans-serif;
 	font-size: 100%;
-}
-
-.task button {
-	float: right;
 }
