@@ -9,8 +9,8 @@
 	<script id='todo-display-template' type='text/x-handlebars'>
 		<span class='todo-status {{status}}'></span>
 		<span class='todo-priority'>{{priority}}</span>
-		<span class='todo-description'>{{description}}</span>
-		<span class='todo-age'>{{age}} days ago</span>
+		<span class='todo-description'>{{{rDescription}}}</span>
+		<span class='todo-age'>{{rAge}}</span>
 	</script>
 
 	<script id='todo-edit-template' type='text/x-handlebars'>
@@ -21,11 +21,12 @@
 	</script>
 
 	<script type='text/javascript' src='todo-model.js'></script>
-	<script type='text/javascript' src='todo-view.js'></script>
+	<script type='text/javascript' src='todo-text.js'></script>
+	<script type='text/javascript' src='todo-html.js'></script>
+	<script type='text/javascript' src='todo-controller.js'></script>
 	<script type='text/javascript' src='todo-file.js'></script>
 	<script type='text/javascript' src='todo-behavior.js'></script>
 	<script type='text/javascript' src='todo-renderer.js'></script>
-	<script type='text/javascript' src='todo-parser.js'></script>
 	<script type='text/javascript' src='drag-n-drop.js'></script>
 	
 	<link rel='stylesheet' type='text/css' href='todo-layout.css'></link>

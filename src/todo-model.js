@@ -3,11 +3,7 @@ var files = {
 	done: null
 }
 
-var lastId = 0
-var todos = []
-
 var Todo = function() {
-	this.id = ++lastId
 	this._complete = false
 	this.priority = ''	
 	this.description = ''
@@ -29,6 +25,14 @@ Todo.prototype = {
 	},
 	get age() {
 		return Math.round((new Date().getTime() - new Date(this.created).getTime())/(1000 * 60 * 60 * 24))
+	},
+	get rAge() {
+		var age = this.age
+		if (isNaN(age) || age == 0) {
+			return 'Today'
+		} else {
+			return age + ' days ago'
+		}
 	},
 	get createdToday() {
 		return this.getAge == 0

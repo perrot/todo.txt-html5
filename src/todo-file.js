@@ -38,10 +38,7 @@ function initFs(fs) {
 function readTodos(file) {
 	var reader = new FileReader()
 	reader.onload = function(event) {
-		parseTodos(event.target.result)
-		for (var i = 0; i < todos.length; i++) {
-			renderDisplay(todos[i])
-		}
+		controller.createTodos(event.target.result)
 	}
 	reader.onerror = function(event) {
 		console.log('Could not read todo.txt', event)
