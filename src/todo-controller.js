@@ -26,12 +26,12 @@ var controller = {
 			for (key in criteria) {
 				if (criteria[key] instanceof Array) {
 					for (criterion in criteria[key]) {
-						if (criterion != todos[i][criterion]) {
+						if (!todos[i].hasPropertyValue(key, criterion)) {
 							match = false
 							break
 						}
 					}
-				} else if (criteria[key] != todos[i][key]) {
+				} else if (!todos[i].hasPropertyValue(key, criteria[key])) {
 					match = false
 					break
 				}

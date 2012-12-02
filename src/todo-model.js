@@ -45,5 +45,13 @@ Todo.prototype = {
 	},
 	get status() {
 		return this.complete ? 'complete' : 'incomplete'
+	},
+	hasPropertyValue: function(key, value) {
+		var thisVal = this[key]
+		if (thisVal instanceof Array) {
+			return thisVal.indexOf(value) !== -1
+		} else {
+			return thisVal === value
+		}
 	}
 }
