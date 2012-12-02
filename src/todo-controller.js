@@ -10,10 +10,6 @@ var controller = {
 		return this._todos[id]
 	},
 
-	getTodoAsText: function(id) {
-		return text.renderTodo(this.getTodo(id))
-	},
-
 	getAllTodos: function() {
 		return this._todos
 	},
@@ -41,10 +37,6 @@ var controller = {
 			}
 		}
 		return filtered
-	},
-
-	getAllTodosAsText: function() {
-		return text.renderTodos(this.getAllTodos())
 	},
 
 	createTodo: function(contents) {
