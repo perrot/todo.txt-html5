@@ -79,28 +79,9 @@ var controller = {
 		return todo
 	},
 
-	filterByContext: function(contexts) {
-
-	},
-
-	filterByProject: function(contexts) {
-
-	},
-
-	filterByStatus: function(statuses) {
-
-	},
-
-	clearContextFilter: function() {
-
-	},
-
-	clearProjectFilter: function() {
-
-	},
-
-	clearStatusFilter: function() {
-
+	filterBy: function(criteria) {
+		var filtered = this.getFilteredTodos(criteria)
+		html.renderAllDisplays(filtered)
 	},
 
 	saveTodosToLocal: function() {

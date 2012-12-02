@@ -10,6 +10,12 @@ var html = {
 		}
 		this.renderCheckbox(todo)
 	},
+	renderAllDisplays: function(todos) {
+		$('#todo-list').html('')
+		for (var i = 0; i < todos.length; i++) {
+			this.renderDisplay(todos[i])
+		}
+	},
 	renderDisplay: function(todo) {
 		this._renderTodo(this._displayTemplate, todo)
 	},
