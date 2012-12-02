@@ -23,8 +23,12 @@ Todo.prototype = {
 	},
 	get rAge() {
 		var age = this.age
-		if (isNaN(age) || age == 0) {
+		if (isNaN(age)) {
+			return ''
+		} else if (age == 0) {
 			return 'Today'
+		} else if (age == 1) {
+			return 'Yesterday'
 		} else {
 			return age + ' days ago'
 		}

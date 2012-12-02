@@ -34,6 +34,7 @@ $('.todo-add').live('click', function(event) {
 	var priority = $(todoElem).children('.todo-priority').attr('value')[0]
 	var description = $(todoElem).children('.todo-description').attr('value')
 	var text = priority ? '(' + priority + ') ' : ''
+	text += formatDate(new Date()) + ' '
 	text += description
 	controller.createTodo(text)
 	todoElem.children('input').attr('value', '')

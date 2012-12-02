@@ -7,7 +7,7 @@ function validDate(date) {
 }
 
 function formatDate(date) {
-	return date.getFullYear() + '-' + ('0' + date.getMonth()).substr(-2,2) + '-' + ('0' + date.getDate()).substr(-2,2);
+	return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).substr(-2,2) + '-' + ('0' + (date.getDate() + 1)).substr(-2,2);
 }
 
 function renderTodos(todos) {
