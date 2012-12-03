@@ -50,3 +50,7 @@ $('#todo-add .todo input').live('keyup', function(event) {
 		$(event.target).siblings('.todo-add').click()
 	}
 })
+
+$(document).ready(function() {
+	$('#todo-add .todo-priority').focus()
+})
