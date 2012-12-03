@@ -1,0 +1,35 @@
+#dropbox {
+	height: 50px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.todo {
+	padding: 5px;
+}
+
+.todo-status {
+	height: 1em;
+	width: 1em;
+	margin-left: 5px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+.todo-priority {
+	margin-right: 5px;
+}
+
+.todo-age {
+	float: right;
+	text-align: right;
+}
+
+input.todo-description[type=text] {
+	box-sizing: border-box;
+	width: 90%;
+}
+
+.todo-save, .todo-add {
+	float: right;
+}

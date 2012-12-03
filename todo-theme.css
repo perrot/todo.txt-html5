@@ -1,0 +1,77 @@
+body {
+	color: #d7d7d7;
+	background-color: #1a1a1a;
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+}
+
+.over {
+	color: white;
+}
+
+#dropbox {
+	background-color: #333333;
+	color: #5f5f57;
+}
+
+#todo-list, #dropbox {
+	border: 1px solid black;
+}
+
+#todo-add {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+.todo {
+	background-color: #272727;
+	border-top: 1px solid #1a1a1a;
+}
+
+#todo-1 {
+	border: none;
+}
+
+.todo-priority {
+	color: #997ee9;
+	font-weight: bold;
+}
+
+.todo-project {
+	color: #74d4e0;
+}
+
+.todo-context {
+	color: #f42a73;
+}
+
+.todo-age {
+	color: #b2d930;
+	font-style: italic;
+}
+
+.complete ~ .todo-description {
+	text-decoration: line-through;
+	color: #5f5f57;
+}
+
+.todo-date {
+	color: #f6aa52;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #f6aa52;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input[type=text] {
+	background-color: #333333;
+	border: none;
+	color: #d7d7d7;
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+}
