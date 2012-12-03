@@ -26,6 +26,7 @@ $('.todo-save').live('click', function(event) {
 		priority: priority,
 		description: description
 	})
+	controller.sortTodos()
 	event.preventDefault()
 })
 
@@ -39,6 +40,7 @@ $('.todo-add').live('click', function(event) {
 	controller.createTodo(text)
 	todoElem.children('input').attr('value', '')
 	todoElem.children('.todo-priority').focus()
+	controller.sortTodos()
 	event.preventDefault()
 })
 

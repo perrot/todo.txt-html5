@@ -39,6 +39,7 @@ function readTodos(file) {
 	var reader = new FileReader()
 	reader.onload = function(event) {
 		controller.createTodos(event.target.result)
+		controller.sortTodos()
 	}
 	reader.onerror = function(event) {
 		console.log('Could not read todo.txt', event)

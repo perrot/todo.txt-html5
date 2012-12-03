@@ -40,6 +40,7 @@ var html = {
 			}
 			canvasJ.on('click', function(event) {
 				controller.updateTodo(todo.id, { complete: !todo.complete })
+				controller.sortTodos()
 			})
 		}
 	}

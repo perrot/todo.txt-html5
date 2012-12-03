@@ -1,5 +1,5 @@
 var controller = {
-	_lastId: 1,
+	_lastId: 0,
 	_todos: [],
 	_files: {
 		todo: null,
@@ -77,6 +77,38 @@ var controller = {
 		}
 		html.renderDisplay(todo)
 		return todo
+	},
+
+	sortTodos: function() {
+		var current = this.getAllTodos().slice()
+		current.sort(function(a, b) {
+			if (a.complete == b.complete) {
+				if (a.priority == b.priority) {
+					var aAge = a.age
+					var bAge = b.age
+					if (isNaN(aAge)) {
+						return isNaN(bAge) ? 0 : 1
+					} else if (isNaN(bAge)) {
+						return -1
+					} else if (aAge == bAge) {
+						return a.id - b.id
+					} else {
+						return bAge - aAge
+					}
+				} else if (a.priority == '') {
+					return 1
+				} else if (b.priority == '') {
+					return -1
+				} else {
+					return a.priority < b.priority ? -1 : 1
+				}	
+			} else if (a.complete) {
+				return 1
+			} else {
+				return -1
+			}
+		})
+		html.renderAllDisplays(current)
 	},
 
 	filterBy: function(criteria) {
