@@ -17,7 +17,7 @@ var controller = {
 	getFilteredTodos: function(criteria) {
 		var filtered = []
 		var todos = this.getAllTodos()
-		for (var i = 1; i < todos.length; i++) {
+		for (var i = 0; i < todos.length; i++) {
 			var match = true
 			for (key in criteria) {
 				if (criteria[key] instanceof Array) {
