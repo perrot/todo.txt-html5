@@ -1,7 +1,3 @@
-$('#save').live('click', function(event) {
-	controller.saveTodosToLocal()
-})
-
 $('.todo:not(:has(input))').live('click', function(event) {
 	var target = $(event.target)
 	var elem = target.hasClass('todo') ? target : target.parents('.todo')
@@ -27,6 +23,7 @@ $('.todo-save').live('click', function(event) {
 		description: description
 	})
 	controller.sortTodos()
+	controller.saveTodosToLocal()
 	event.preventDefault()
 })
 
@@ -41,6 +38,7 @@ $('.todo-add').live('click', function(event) {
 	todoElem.children('input').attr('value', '')
 	todoElem.children('.todo-priority').focus()
 	controller.sortTodos()
+	controller.saveTodosToLocal()
 	event.preventDefault()
 })
 
