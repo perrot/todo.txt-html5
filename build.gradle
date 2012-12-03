@@ -1,6 +1,6 @@
 buildscript {
 	repositories { mavenCentral() }
-	dependencies { classpath 'org.ajoberstar:gradle-git:0.2.0' }
+	dependencies { classpath 'org.ajoberstar:gradle-git:0.2.3' }
 }
 
 apply plugin: 'github-pages'
@@ -9,8 +9,6 @@ githubPages {
 	repoUri = 'git@github.com:ajoberstar/todo.txt-html5.git'
 	pages {
 		from 'pages'
-		from('src') {
-			into 'test'
-		}
+		from 'src'
 	}
 }
