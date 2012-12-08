@@ -1,3 +1,19 @@
+/*
+ *  Copyright (C) 2012 Andrew Oberstar
+ *
+ *  todo.txt-html5 is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  todo.txt-html5 is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with todo.txt-html5.  If not, see <http://www.gnu.org/licenses/>.
+ */
 body {
 	color: #d7d7d7;
 	background-color: #1a1a1a;
@@ -12,6 +28,16 @@ body {
 #dropbox {
 	background-color: #333333;
 	color: #5f5f57;
+}
+
+#footer {
+	font-size: 75%;
+	text-align: center;
+	color: #5f5f57;
+}
+
+#footer a:link, #footer a:visited {
+	color: #ffffff;
 }
 
 #todo-list, #dropbox {
