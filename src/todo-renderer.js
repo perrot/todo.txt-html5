@@ -46,5 +46,5 @@ function renderTodos(todos) {
 		line += todo.description
 		lines.push(line)
 	}
-	return lines.join('\n')
+	return lines.join('\n') + '\n'
 }
